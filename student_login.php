@@ -1,9 +1,28 @@
-<?php include("db.php"); session_start(); ?>
+<?php
+session_start();
+include("db.php");
+
+if (isset($_POST['login'])) {
+    $roll = $_POST['rollno'];
+    $pass = $_POST['password'];
+
+    $sql = "SELECT * FROM students WHERE rollno='$roll' AND password='$pass'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $_SESSION['student'] = $roll;
+        header("Location: student_dashboard.php");
+        exit(); // ✅ ensures redirect before HTML output
+    } else {
+        $error = "Invalid Roll No or Password!";
+    }
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Student Login</title>
-<link rel="stylesheet" href="css/style.css">
+    <title>Student Login</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <h2>Student Login</h2>
@@ -14,18 +33,8 @@
 </form>
 
 <?php
-if(isset($_POST['login'])){
-    $roll = $_POST['rollno'];
-    $pass = $_POST['password'];
-    $sql = "SELECT * FROM students WHERE rollno='$roll' AND password='$pass'";
-    $result = $conn->query($sql);
-
-    if($result->num_rows > 0){
-        $_SESSION['student'] = $roll;
-        header("Location: student_dashboard.php");
-    } else {
-        echo "<p>Invalid Roll No or Password!</p>";
-    }
+if (isset($error)) {
+    echo "<p style='color:red;'>$error</p>";
 }
 ?>
 </body>

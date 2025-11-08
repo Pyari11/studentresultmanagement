@@ -1,4 +1,23 @@
-<?php include("db.php"); session_start(); ?>
+<?php
+session_start();
+include("db.php");
+
+if (isset($_POST['login'])) {
+    $user = $_POST['username'];
+    $pass = $_POST['password'];
+
+    $sql = "SELECT * FROM admin WHERE username='$user' AND password='$pass'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $_SESSION['admin'] = $user;
+        header("Location: admin_dashboard.php");
+        exit(); // ✅ stops script after redirect
+    } else {
+        $error = "Invalid credentials!";
+    }
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,18 +33,8 @@
 </form>
 
 <?php
-if(isset($_POST['login'])){
-    $user = $_POST['username'];
-    $pass = $_POST['password'];
-    $sql = "SELECT * FROM admin WHERE username='$user' AND password='$pass'";
-    $result = $conn->query($sql);
-
-    if($result->num_rows > 0){
-        $_SESSION['admin'] = $user;
-        header("Location: admin_dashboard.php");
-    } else {
-        echo "<p>Invalid credentials!</p>";
-    }
+if (isset($error)) {
+    echo "<p style='color:red;'>$error</p>";
 }
 ?>
 </body>
