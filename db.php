@@ -1,5 +1,5 @@
 <?php
-$servername = "localhost";
+$servername = "host.docker.internal";
 $username = "root";
 $password = "";
 $dbname = "studentresultdb"; // ✅ same name
