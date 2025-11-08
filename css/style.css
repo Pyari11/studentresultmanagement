@@ -1,0 +1,74 @@
+/* ===== General Page Styling ===== */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, #74ABE2, #5563DE);
+  color: #fff;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== Header ===== */
+header {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 20px 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px #000;
+}
+
+/* ===== Container ===== */
+.container {
+  background: rgba(255, 255, 255, 0.15);
+  width: 90%;
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 30px 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* ===== Buttons ===== */
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.btn {
+  background: #fff;
+  color: #333;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: #ffde59;
+  color: #000;
+  transform: translateY(-3px);
+}
+
+/* ===== Links & Text ===== */
+a {
+  color: #ffde59;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Footer ===== */
+footer {
+  margin-top: auto;
+  padding: 15px;
+  background: rgba(0,0,0,0.3);
+  font-size: 0.9rem;
+}
