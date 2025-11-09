@@ -5,7 +5,7 @@ services:
     build: .
     container_name: studentresult_web
     ports:
-      - "8090:80"         # Website at localhost:8090
+      - "8090:80"  # Website will run on localhost:8081
     depends_on:
       - mysql
     environment:
@@ -23,7 +23,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: studentresultdb
     ports:
-      - "3310:3306"       # MySQL accessible on localhost:3310
+      - "3310:3306" # MySQL on localhost:3310
     volumes:
       - mysql_data:/var/lib/mysql
 
@@ -32,7 +32,7 @@ services:
     container_name: studentresult_phpmyadmin
     restart: always
     ports:
-      - "8091:80"         # phpMyAdmin at localhost:8091
+      - "8091:80"  # phpMyAdmin at localhost:8091
     environment:
       - PMA_HOST=mysql
       - MYSQL_ROOT_PASSWORD=root
