@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost";
+$servername = "mysql";  // 👈 this matches the service name in docker-compose
 $username = "root";
-$password = "";
-$dbname = "studentresultdb"; // ✅ same name
+$password = "root";     // 👈 from your docker-compose environment
+$dbname = "studentresultdb";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
