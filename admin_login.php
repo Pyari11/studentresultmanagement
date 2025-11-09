@@ -1,41 +1,35 @@
 <?php
-session_start();
 include("db.php");
+session_start();
 
 if (isset($_POST['login'])) {
-    $user = $_POST['username'];
-    $pass = $_POST['password'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-    $sql = "SELECT * FROM admin WHERE username='$user' AND password='$pass'";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        $_SESSION['admin'] = $user;
+    $result = $conn->query("SELECT * FROM admin WHERE username='$username' AND password='$password'");
+    if ($result && $result->num_rows == 1) {
+        $_SESSION['admin'] = $username;
         header("Location: admin_dashboard.php");
-        exit(); // ✅ stops script after redirect
+        exit();
     } else {
-        $error = "Invalid credentials!";
+        echo "<p style='color:red;'>Invalid credentials!</p>";
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin Login</title>
+    <meta charset="UTF-8">
+    <title>Admin logind</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body style="font-family:Arial; margin:40px;">
 <h2>Admin Login</h2>
-<form method="POST">
-    <input type="text" name="username" placeholder="Admin Username" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <button type="submit" name="login">Login</button>
+<form method="post">
+    Username: <input type="text" name="username" required><br><br>
+    Password: <input type="password" name="password" required><br><br>
+    <input type="submit" name="login" value="Login">
 </form>
-
-<?php
-if (isset($error)) {
-    echo "<p style='color:red;'>$error</p>";
-}
-?>
 </body>
 </html>

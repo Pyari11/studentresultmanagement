@@ -3,39 +3,34 @@ session_start();
 include("db.php");
 
 if (isset($_POST['login'])) {
-    $roll = $_POST['rollno'];
-    $pass = $_POST['password'];
+    $roll = trim($_POST['rollno']);
+    $stmt = $conn->prepare("SELECT * FROM students WHERE rollno = ?");
+    $stmt->bind_param("s", $roll);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    $sql = "SELECT * FROM students WHERE rollno='$roll' AND password='$pass'";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
+    if ($result && $result->num_rows == 1) {
         $_SESSION['student'] = $roll;
         header("Location: student_dashboard.php");
-        exit(); // ✅ ensures redirect before HTML output
+        exit();
     } else {
-        $error = "Invalid Roll No or Password!";
+        echo "<p style='color:red;'>Invalid Roll Number!</p>";
     }
+    $stmt->close();
 }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Student Login</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body style="font-family:Arial; margin:40px;">
 <h2>Student Login</h2>
-<form method="POST">
-    <input type="text" name="rollno" placeholder="Roll No" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <button type="submit" name="login">Login</button>
+<form method="post">
+    Roll Number: <input type="text" name="rollno" required><br><br>
+    <input type="submit" name="login" value="Login">
 </form>
-
-<?php
-if (isset($error)) {
-    echo "<p style='color:red;'>$error</p>";
-}
-?>
 </body>
 </html>

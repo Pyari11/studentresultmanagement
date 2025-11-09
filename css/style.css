@@ -1,74 +1,182 @@
-/* ===== General Page Styling ===== */
+/* 🌈 Global Styling */
 body {
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  background: linear-gradient(135deg, #74ABE2, #5563DE);
-  color: #fff;
-  text-align: center;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #e3f2fd, #ffffff);
+    color: #333;
+    margin: 0;
+    padding: 0;
 }
 
-/* ===== Header ===== */
+/* 🌐 Header Bar */
 header {
-  background: rgba(0, 0, 0, 0.3);
-  padding: 20px 0;
-  font-size: 1.4rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-shadow: 1px 1px 2px #000;
+    background: #4a90e2;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-/* ===== Container ===== */
+/* 💡 Main Container */
 .container {
-  background: rgba(255, 255, 255, 0.15);
-  width: 90%;
-  max-width: 500px;
-  margin: 40px auto;
-  padding: 30px 20px;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    animation: fadeIn 0.5s ease-in-out;
 }
 
-/* ===== Buttons ===== */
-.buttons {
-  display: flex;
-  justify-content: space-around;
-  margin: 20px 0;
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
+/* 🧾 Headings */
+h1, h2, h3 {
+    color: #4a90e2;
+    text-align: center;
+}
+
+/* 📋 Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th {
+    background: #4a90e2;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+td {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+
+tr:hover {
+    background: #f5faff;
+}
+
+/* 🧍 Form Styling */
+form {
+    background: #f9f9f9;
+    border-radius: 10px;
+    padding: 25px;
+    margin-top: 25px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+select {
+    width: 90%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+select:focus {
+    border-color: #4a90e2;
+    outline: none;
+    box-shadow: 0 0 4px rgba(74,144,226,0.4);
+}
+
+input[type="submit"],
+button {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 6px;
+    margin-top: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+input[type="submit"]:hover,
+button:hover {
+    background-color: #357ABD;
+}
+
+/* 🚪 Logout Button */
+.logout {
+    float: right;
+    background: #e74c3c;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.logout:hover {
+    background: #c0392b;
+}
+
+/* 💬 Messages */
+.success {
+    color: green;
+    font-weight: bold;
+    text-align: center;
+}
+.error {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* 🔘 Buttons Group */
 .btn {
-  background: #fff;
-  color: #333;
-  padding: 12px 25px;
-  border-radius: 25px;
-  font-weight: bold;
-  text-decoration: none;
-  transition: all 0.3s ease;
+    background: #4a90e2;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 15px;
+    transition: all 0.3s ease;
 }
-
 .btn:hover {
-  background: #ffde59;
-  color: #000;
-  transform: translateY(-3px);
+    background: #357ABD;
 }
 
-/* ===== Links & Text ===== */
-a {
-  color: #ffde59;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* ===== Footer ===== */
+/* ⚙️ Footer */
 footer {
-  margin-top: auto;
-  padding: 15px;
-  background: rgba(0,0,0,0.3);
-  font-size: 0.9rem;
+    text-align: center;
+    color: #777;
+    font-size: 14px;
+    margin: 30px 0;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+    table, form {
+        font-size: 14px;
+    }
 }

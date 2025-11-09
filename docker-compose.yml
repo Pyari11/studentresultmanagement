@@ -2,9 +2,10 @@ version: '3.8'
 
 services:
   web:
-    image: pyari11/studentresult:latest
+    build: .
+    container_name: studentresult_web
     ports:
-      - "8085:80"
+      - "8090:80"         # Website at localhost:8090
     depends_on:
       - mysql
     environment:
@@ -12,14 +13,31 @@ services:
       - MYSQL_USER=root
       - MYSQL_PASSWORD=root
       - MYSQL_DB=studentresultdb
+    volumes:
+      - .:/var/www/html
 
   mysql:
     image: mysql:8
+    container_name: studentresult_mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: studentresultdb
+    ports:
+      - "3310:3306"       # MySQL accessible on localhost:3310
     volumes:
       - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: studentresult_phpmyadmin
+    restart: always
+    ports:
+      - "8091:80"         # phpMyAdmin at localhost:8091
+    environment:
+      - PMA_HOST=mysql
+      - MYSQL_ROOT_PASSWORD=root
+    depends_on:
+      - mysql
 
 volumes:
   mysql_data:
